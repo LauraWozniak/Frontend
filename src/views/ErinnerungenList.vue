@@ -1,8 +1,21 @@
 <!-- src/components/ErinnerungenList.vue -->
 <template>
   <div class="erinnerungen-list">
-    <div class="erinnerungen-box">
-      <div v-for="erinnerung in erinnerungen" :key="erinnerung.id" class="erinnerung-item">
+    <div
+      class="erinnerungen-box"
+      @dragover.prevent
+      @drop="onDrop"
+      @dragenter.prevent
+      @dragleave="onDragLeave"
+    >
+      <div
+        v-for="erinnerung in erinnerungen"
+        :key="erinnerung.id"
+        class="erinnerung-item"
+        draggable="true"
+        @dragstart="startDrag(erinnerung)"
+        @dragend="onDragEnd"
+      >
         <div class="erinnerung-details">
           <div class="erinnerung-checkbox" @click="toggleErinnerung(erinnerung)">
             <div v-if="erinnerung.completed" class="checkbox-checked">&#10003;</div>
@@ -29,7 +42,8 @@ export default {
   },
   data () {
     return {
-      newErinnerungText: ''
+      newErinnerungText: '',
+      dragItem: null
     }
   },
   methods: {
@@ -44,6 +58,24 @@ export default {
     },
     toggleErinnerung (erinnerung) {
       this.$emit('toggle-erinnerung', erinnerung.id)
+    },
+    startDrag (erinnerung) {
+      this.dragItem = erinnerung
+    },
+    onDragEnd () {
+      this.dragItem = null
+    },
+    onDrop () {
+      if (this.dragItem) {
+        this.$emit('reorder-erinnerung', {
+          draggedItem: this.dragItem,
+          dropTarget: null // You may need to identify the drop target
+        })
+      }
+      this.dragItem = null
+    },
+    onDragLeave () {
+      // Handle drag leave if needed
     }
   }
 }
