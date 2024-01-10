@@ -57,9 +57,9 @@ export default {
 
 <style scoped>
 .gradient-custom {
-  background: #c471f5;
-  background: -webkit-linear-gradient(to right, rgba(196, 113, 245, 1), rgba(250, 113, 205, 1));
-  background: linear-gradient(to right, rgba(196, 113, 245, 1), rgba(250, 113, 205, 1));
+  background: #3a7928;
+  background: -webkit-linear-gradient(to right, rgb(113, 241, 245), rgb(113, 250, 177));
+  background: linear-gradient(to right, rgb(89, 159, 130), rgb(88, 124, 59));
 }
 .navbar-brand {
   font-size: 1.5em; /* Adjust the font size as needed */
