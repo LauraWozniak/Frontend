@@ -1,7 +1,8 @@
 <!-- src/components/ErinnerungenList.vue -->
 <template>
+  <TimerClock />
   <div class="erinnerungen-list" style="margin-top: 40px;">
-    <div class="list-container"> <!-- Added the list-container class -->
+    <div class="list-container">
       <div v-for="erinnerung in erinnerungen" :key="erinnerung.id" class="erinnerung-item">
         <div class="erinnerung-details">
           <!-- Removed the checkbox section -->
@@ -18,7 +19,10 @@
   </div>
 </template>
 <script>
+import TimerClock from '@/components/TimerClock.vue'
+
 export default {
+  components: { TimerClock },
   props: {
     erinnerungen: Array
   },
@@ -50,6 +54,7 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   padding-left: 20px;
+  padding-top: 50px;
 }
 
 .list-container {
