@@ -24,8 +24,18 @@ export default {
     }
   },
   mounted () {
-    this.fetchCatPicture()
-    setInterval(this.fetchCatPicture, 10000) // Update every 10 seconds
+    this.fetchCatPicture() // Fetch initial picture
+
+    // Fetch new picture every 10 seconds if not minimized
+    this.intervalId = setInterval(() => {
+      if (!this.minimized) {
+        this.fetchCatPicture()
+      }
+    }, 10000000000)
+  },
+  beforeUnmount () {
+    // Clear the interval when the component is destroyed
+    clearInterval(this.intervalId)
   },
   methods: {
     async fetchCatPicture () {
@@ -53,7 +63,6 @@ export default {
   border-radius: 20px;
   background-color: #f2f2f2;
   max-width: 400px; /* Set a maximum width for the cat container */
-  max-height: 400px;
   position: relative; /* Relative positioning for absolute button */
 }
 

@@ -2,24 +2,25 @@
   <div class="timer-container">
     <div class="timer">
       <div class="timer-box">
-      <p class="timer-text">{{ timerType }}: {{ formatTime(timerCount) }}</p>
-        </div>
-        <button @click="start" class="modern-button">Start</button>
-        <button @click="stop" class="modern-button">Stop</button>
-        <button @click="restart" class="modern-button">Restart</button>
-        <button @click="endSession" class="modern-button">End Session</button>
+        <p class="timer-text">{{ timerType }}: {{ formatTime(timerCount) }}</p>
+      </div>
+      <button @click="start" class="modern-button">Start</button>
+      <button @click="stop" class="modern-button">Stop</button>
+      <button @click="restart" class="modern-button">Restart</button>
+      <button @click="endSession" class="modern-button">End Session</button>
     </div>
   </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
   data () {
     return {
       timerEnabled: false,
       timerCount: 50, // 50 seconds (minutes would be 50 * 60)
       timerType: 'Session',
-      timerIntervalId: null // To keep track of the interval ID
+      timerIntervalId: null
     }
   },
   watch: {
@@ -44,15 +45,15 @@ export default {
       this.clearTimerInterval()
     },
     restart () {
-      this.timerCount = 50 // 50 seconds (minutes would be 50 * 60)
+      this.timerCount = 50
       this.timerType = 'Session'
       this.startTimer()
     },
     endSession () {
       this.timerEnabled = false
-      this.timerCount = 10 // 10 seconds (minutes would be 10 * 60)
+      this.timerCount = 10
       this.timerType = 'Break'
-      this.startTimer() // Start the break timer immediately
+      this.startTimer()
     },
     startTimer () {
       this.clearTimerInterval()
@@ -63,20 +64,38 @@ export default {
       }, 1000)
     },
     clearTimerInterval () {
-      clearInterval(this.timerIntervalId)// Bugfix clear the time to make start stop work if pressed after eachother
+      clearInterval(this.timerIntervalId)
     },
     handleTimerEnd () {
       if (this.timerType === 'Session') {
-        // Switch to break timer (10 minutes)
-        this.timerCount = 10 // 10 seconds (minutes would be 10 * 60)
+        this.timerCount = 10
         this.timerType = 'Break'
         this.startTimer()
+        Swal.fire({
+          title: 'Session is over',
+          howCancelButton: true,
+          confirmButtonText: 'Start the break'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.timerEnabled = true
+            this.startTimer()
+          }
+        })
       } else {
-        this.timerCount = 50 // 50 seconds (minutes would be 50 * 60)
+        this.timerCount = 50
         this.timerType = 'Session'
+        Swal.fire({
+          title: 'The Break Ended',
+          showCancelButton: true,
+          confirmButtonText: 'Start a new session'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.restart()
+            this.timerEnabled = true
+            this.startTimer()
+          }
+        })
       }
-      // Optionally, you can add a notification or some indication that a new phase has started.
-      // For example: alert(`Time for ${this.timerType}!`);
     },
     formatTime (seconds) {
       const minutes = Math.floor(seconds / 60)
@@ -85,6 +104,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
