@@ -17,12 +17,17 @@
     </div>
   </div>
   </div>
+  <div class="cat-container">
+    <CatPictures />
+  </div>
 </template>
 <script>
 import TimerClock from '@/components/TimerClock.vue'
+import CatPictures from '@/components/CatPictures.vue'
 
 export default {
-  components: { TimerClock },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { CatPictures, TimerClock },
   props: {
     erinnerungen: Array
   },
@@ -138,5 +143,11 @@ export default {
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+.cat-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align to the top */
+  padding-right: 20px;
 }
 </style>
