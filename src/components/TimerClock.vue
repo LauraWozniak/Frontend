@@ -73,6 +73,8 @@ export default {
         this.startTimer()
         Swal.fire({
           title: 'Session is over',
+          confirmButtonColor: '#5b5b5b',
+          cancelButtonColor: '#888d82',
           howCancelButton: true,
           confirmButtonText: 'Start the break'
         }).then((result) => {
@@ -86,6 +88,8 @@ export default {
         this.timerType = 'Session'
         Swal.fire({
           title: 'The Break Ended',
+          confirmButtonColor: '#5b5b5b',
+          cancelButtonColor: '#888d82',
           showCancelButton: true,
           confirmButtonText: 'Start a new session'
         }).then((result) => {
@@ -145,11 +149,11 @@ export default {
   padding: 10px 20px;
   cursor: pointer;
   margin: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition effect for color change and scale */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .modern-button:hover {
   background-color: #5b5b5b;
-  transform: scale(1.1); /* Scale up on hover */
+  transform: scale(1.1);
 }
 </style>
