@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Deine Erinnerungen</h1>
     <ErinnerungenList :erinnerungen="erinnerungen" @add-erinnerung="addErinnerung" @delete-erinnerung="deleteErinnerung" />
   </div>
 </template>
@@ -83,5 +82,5 @@ export default {
 </script>
 
 <style scoped>
-/* You can add styling here if needed */
+
 </style>

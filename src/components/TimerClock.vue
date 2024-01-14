@@ -116,7 +116,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 0vh;
+  height: 15vh;
   padding-left: 20px;
   padding-top: 40px;
 }
@@ -136,8 +136,8 @@ export default {
   background-color: #f2f2f2;
 }
 .timer-text {
-  font-family: 'San Francisco', sans-serif; /* Use the San Francisco font for modernity */
-  font-size: 35px; /* Adjust the font size as needed */
+  font-family: 'San Francisco', sans-serif;
+  font-size: 35px;
   font-weight: bold;
   margin-bottom: -3px;
 }

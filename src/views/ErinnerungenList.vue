@@ -1,9 +1,11 @@
 <!-- src/components/ErinnerungenList.vue -->
 <template>
   <div class="main-container">
+    <!-- Timer -->
     <div class="timer-container">
       <TimerClock />
     </div>
+    <!-- erinnerungsliste -->
   <div class="erinnerungen-list" style="margin-top: 40px;">
     <div class="list-container">
       <div v-for="erinnerung in erinnerungen" :key="erinnerung.id" class="erinnerung-item">
@@ -19,6 +21,7 @@
     </div>
   </div>
   </div>
+    <!-- katzenbilder -->
     <div class="cat-pictures">
       <CatPictures />
     </div>
@@ -29,7 +32,6 @@ import TimerClock from '@/components/TimerClock.vue'
 import CatPictures from '@/components/CatPictures.vue'
 
 export default {
-  // eslint-disable-next-line vue/no-unused-components
   components: { CatPictures, TimerClock },
   props: {
     erinnerungen: Array
@@ -48,26 +50,23 @@ export default {
     },
     deleteErinnerung (id) {
       this.$emit('delete-erinnerung', id)
-    },
-    toggleErinnerung (erinnerung) {
-      this.$emit('toggle-erinnerung', erinnerung.id)
     }
   }
 }
 </script>
 <style scoped>
-.main-container {
+.main-container {/* do not touch the single containers*/
   display: flex;
 }
 
 .timer-container {
-  flex: 1; /* Takes 1/3 of the available width */
+  flex: 1;
 }
 .cat-pictures {
-  flex: 1; /* Takes 1/3 of the available width */
-  max-width: 400px; /* Optional: Set a maximum width for the cat pictures */
+  flex: 1;
+  max-width: 400px;
   max-height: 400px;
-  margin-left: 20px; /* Adjust the margin between list and cat pictures */
+  margin-left: 20px;
 }
 .cat-pictures {
   position: absolute;
@@ -155,30 +154,12 @@ export default {
   outline: none;
   background-color: #f2f2f2;
 }
-
-.input-field {
-  flex-grow: 1;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  margin-right: 10px;
-}
-
 .modern-button {
   background-color: #888d82;
   color: white;
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
-  cursor: pointer;
-}
-
-.add-button {
-  background-color: #3b4a57;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
   cursor: pointer;
 }
 </style>

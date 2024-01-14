@@ -26,12 +26,12 @@ export default {
   mounted () {
     this.fetchCatPicture() // Fetch initial picture
 
-    // Fetch new picture every 10 seconds if not minimized
+    // no new pictures if minimized
     this.intervalId = setInterval(() => {
       if (!this.minimized) {
         this.fetchCatPicture()
       }
-    }, 10000000000)
+    }, 100000)// Wie oft neue bilder(10 Sekunden)
   },
   beforeUnmount () {
     // Clear the interval when the component is destroyed
@@ -57,13 +57,13 @@ export default {
 
 <style scoped>
 .cat-container {
-  text-align: right; /* Align the text to the right */
+  text-align: right;
   padding: 20px;
-  padding-right: 40px; /* Increase padding on the right */
+  padding-right: 40px;
   border-radius: 20px;
   background-color: #f2f2f2;
-  max-width: 400px; /* Set a maximum width for the cat container */
-  position: relative; /* Relative positioning for absolute button */
+  max-width: 400px;
+  position: relative;
 }
 
 .minimize-button {
@@ -77,8 +77,8 @@ export default {
   font-size: 18px;
   position: absolute;
   top: 5px;
-  right: 5px; /* Position the button on the right */
-  transition: background-color 0.3s ease; /* Add transition effect for color change */
+  right: 5px;
+  transition: background-color 0.3s ease;
   width: 30px;
 }
 
