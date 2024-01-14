@@ -1,24 +1,27 @@
 <!-- src/components/ErinnerungenList.vue -->
 <template>
-  <TimerClock />
+  <div class="main-container">
+    <div class="timer-container">
+      <TimerClock />
+    </div>
   <div class="erinnerungen-list" style="margin-top: 40px;">
     <div class="list-container">
       <div v-for="erinnerung in erinnerungen" :key="erinnerung.id" class="erinnerung-item">
         <div class="erinnerung-details">
-          <!-- Removed the checkbox section -->
           <div class="erinnerung-text">{{ erinnerung.text }}</div>
         </div>
         <button class="erinnerung-done" @click="deleteErinnerung(erinnerung.id)"></button>
       </div>
-    <!-- Add new erinnerung input and button -->
+    <!-- input feld für neue erinnerung -->
     <div class="new-erinnerung">
       <input class= "modern-input"  v-model="newErinnerungText" placeholder="Neuer Eintrag"/>
       <button class ="modern-button" @click="addErinnerung">Add</button>
     </div>
   </div>
   </div>
-  <div class="cat-container">
-    <CatPictures />
+    <div class="cat-pictures">
+      <CatPictures />
+    </div>
   </div>
 </template>
 <script>
@@ -53,13 +56,46 @@ export default {
 }
 </script>
 <style scoped>
-/* Add styling as needed */
-.erinnerungen-list {
+.main-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 20px;
-  padding-top: 50px;
+}
+
+.timer-container {
+  flex: 1; /* Takes 1/3 of the available width */
+}
+.cat-pictures {
+  flex: 1; /* Takes 1/3 of the available width */
+  max-width: 400px; /* Optional: Set a maximum width for the cat pictures */
+  max-height: 400px;
+  margin-left: 20px; /* Adjust the margin between list and cat pictures */
+}
+.cat-pictures {
+  position: absolute;
+  top: 130px;
+  right: 20px;
+}
+
+.modern-button {
+  background-color: #888d82;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modern-button:hover {
+  background-color: #5b5b5b;
+  transform: scale(1.1);
+}
+
+.erinnerungen-list {
+  position: absolute;
+  top: 260px;
+  left: 20px;
+  max-width: 400px;
 }
 
 .list-container {
@@ -76,7 +112,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  padding-right: 10px; /* Add padding to the right of each item */
+  padding-right: 10px;
 }
 
 .erinnerung-details {
@@ -86,7 +122,7 @@ export default {
 
 .erinnerung-text {
   flex-grow: 1;
-  padding-right: 10px; /* Add padding to the right of the text */
+  padding-right: 10px;
 }
 
 .erinnerung-done {
@@ -96,13 +132,12 @@ export default {
   background-color: #5b5b5b;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease; /* Add transition effect for color change */
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Add hover effect for the button */
 .erinnerung-done:hover {
-  transform: scale(1.2); /* Scale up on hover */
-  background-color: #79b046; /* Change color on hover */
+  transform: scale(1.2);
+  background-color: #79b046;
 }
 
 .new-erinnerung {
@@ -110,14 +145,15 @@ export default {
   display: flex;
   align-items: center;
 }
+
 .modern-input {
   flex-grow: 1;
   border: none;
   border-radius: 20px;
   padding: 10px;
   margin-right: 10px;
-  outline: none; /* Remove the outline */
-  background-color: #f2f2f2; /* Background color */
+  outline: none;
+  background-color: #f2f2f2;
 }
 
 .input-field {
@@ -133,9 +169,10 @@ export default {
   color: white;
   border: none;
   border-radius: 20px;
-  padding: 10px 20px; /* Adjust padding for a rounder button */
+  padding: 10px 20px;
   cursor: pointer;
 }
+
 .add-button {
   background-color: #3b4a57;
   color: white;
@@ -143,11 +180,5 @@ export default {
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
-}
-.cat-container{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Align to the top */
-  padding-right: 20px;
 }
 </style>
