@@ -1,9 +1,4 @@
-<template>
-  <div class="home">
-    <HelloWorld msg="Hello World"/>
-  </div>
-</template>
-
+<!-- Not in use -->
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
